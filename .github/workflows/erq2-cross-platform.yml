@@ -1,0 +1,85 @@
+name: ERQ-2 Cross-Platform Survival Qualification
+
+on:
+  push:
+    branches:
+      - qualification/erq2-cross-platform
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  erq2:
+    name: ERQ-2 / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout qualification branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fresh-clone and verify ERQ-1 anchor
+        shell: pwsh
+        env:
+          ERQ1_ANCHOR: cfcf7e968a5faf506fb6a59bf21d0e96d40b9601
+          ERQ1_UPSTREAM: 08106b0c3771ef5b4a5aa176acccd460e88b7325
+          ERQ1_TREE: 8e0488e3da3fb0f42b1092a8c541e984a813c877
+          ERQ1_UPSTREAM_TREE: d382e2a34200de59849132f78c1ee0123ffa8122
+          ERQ1_LICENSE_BLOB: 28e6960dd9a2be209c308b49bc9a8973dbf4d60d
+          ERQ1_TRACKED: "395"
+          ERQ1_MANIFEST_ID: btdu-repo:1621b80b8100093c68d269dab2450e647aabb6cd5bd341cc7b6ef26a69620089
+          ERQ1_AGGREGATE: 056bb283803aade8aa0c0311660d53dd67469cf38864072a6709d3ffd2d3cf70
+          ERQ1_ATOMIC_ROOT: 68214f419cf5cbe44eabb75bb850e9cb2d01bab8954600ad9da4f7f4fd306fff
+          ERQ1_GIT_OBJECT_MANIFEST: 2417c8bd4a39f369bd8ef36baa7184061c5a0e04374f2bb37aa485179c6f39ff
+          ERQ1_GOVERNED_GRAPH: 599baa14fcdf0961d072d97153ec347d5655a2386f3125e5f7c831027090cf27
+          ERQ1_PROVENANCE: 9ad041653e1225b09414a09b779f894ed259d3ee26beedc985477499296315e2
+          ERQ1_RIGHTS: e5c09ce61741e181a5ff9ce351536101184a94af39b117d8e5dff838e853701e
+          ERQ1_BTG: aaa91176db857e0ae4546746f4468850b96064d62b7d7faf90d86b81e2579534
+        run: |
+          $ErrorActionPreference = "Stop"
+          $recovery = Join-Path $env:RUNNER_TEMP "erq2-fresh-clone"
+          if (Test-Path $recovery) { Remove-Item $recovery -Recurse -Force }
+          git clone "https://github.com/$env:GITHUB_REPOSITORY.git" $recovery
+          if ($LASTEXITCODE -ne 0) { throw "FRESH CLONE FAILED" }
+
+          git -C $recovery checkout --detach $env:ERQ1_ANCHOR
+          if ($LASTEXITCODE -ne 0) { throw "ANCHOR CHECKOUT FAILED" }
+
+          $head = (git -C $recovery rev-parse HEAD).Trim()
+          $tree = (git -C $recovery rev-parse "HEAD^{tree}").Trim()
+          $parent = (git -C $recovery rev-parse "HEAD^").Trim()
+          $parentTree = (git -C $recovery rev-parse "HEAD^^{tree}").Trim()
+
+          if ($head -ne $env:ERQ1_ANCHOR) { throw "ANCHOR COMMIT MISMATCH" }
+          if ($tree -ne $env:ERQ1_TREE) { throw "ANCHOR TREE MISMATCH" }
+          if ($parent -ne $env:ERQ1_UPSTREAM) { throw "UPSTREAM PARENT MISMATCH" }
+          if ($parentTree -ne $env:ERQ1_UPSTREAM_TREE) { throw "UPSTREAM TREE MISMATCH" }
+
+          $dirty = git -C $recovery status --porcelain
+          if ($dirty) { throw "FRESH CLONE NOT CLEAN" }
+
+          $tracked = @(git -C $recovery ls-tree -r --name-only $env:ERQ1_UPSTREAM).Count
+          if ($tracked -ne [int]$env:ERQ1_TRACKED) { throw "UPSTREAM TRACKED PATH COUNT MISMATCH" }
+
+          $licenseBlob = (git -C $recovery rev-parse "$($env:ERQ1_UPSTREAM):LICENSE").Trim()
+          if ($licenseBlob -ne $env:ERQ1_LICENSE_BLOB) { throw "LICENSE BLOB MISMATCH" }
+
+          $verifyScript = Join-Path $env:GITHUB_WORKSPACE "tools/erq2_verify_anchor.py"
+          python $verifyScript --repo $recovery
+          if ($LASTEXITCODE -ne 0) { throw "ERQ2 ANCHOR VERIFY FAILED" }
+
+      - name: Upload ERQ-2 platform receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: erq2-${{ matrix.os }}-receipt
+          path: erq2-receipt-*.json
+          if-no-files-found: error
