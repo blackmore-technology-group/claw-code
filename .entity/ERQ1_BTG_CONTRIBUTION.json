@@ -1,0 +1,18 @@
+{
+  "author_entity_id": "ent2-kkov66eoh23h3zgr4pe4njsbkayn2kxad6vfyirqvuqrty52clpa",
+  "automatic_upstream_economic_entitlement_claimed": false,
+  "derived_layers": [
+    "ENTITY/BTDU exact-object registrations",
+    "content-addressed object references",
+    "provenance graph",
+    "machine-readable rights boundary",
+    "BTG verification metadata"
+  ],
+  "governed_object_graph_sha256": "599baa14fcdf0961d072d97153ec347d5655a2386f3125e5f7c831027090cf27",
+  "provenance_graph_sha256": "9ad041653e1225b09414a09b779f894ed259d3ee26beedc985477499296315e2",
+  "qualification": "ERQ-1 External Repository Survival Qualification",
+  "rights_manifest_sha256": "e5c09ce61741e181a5ff9ce351536101184a94af39b117d8e5dff838e853701e",
+  "schema": "entity-erq1-btg-contribution-v1",
+  "upstream_commit_sha": "08106b0c3771ef5b4a5aa176acccd460e88b7325",
+  "upstream_source_ownership_claimed": false
+}

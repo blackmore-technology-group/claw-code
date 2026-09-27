@@ -1,0 +1,42 @@
+{
+  "canonical_raw_ingest_manifest_sha256": "04f34098a067244338cbb4e176a9ff95573cb78653e2157088e158f70981926a",
+  "generated_utc": "2026-09-27T15:57:01.720616+00:00",
+  "publication_files": {
+    "ENTITY_PROVENANCE.md": {
+      "bytes": 2283,
+      "sha256": "9308d94d131a943393f5605fd978256bceaedef03ff641be40e780e881063c1c"
+    },
+    "ERQ1_BTDU_INGEST_PUBLIC.json": {
+      "bytes": 1328,
+      "sha256": "725875819e2a9c602d68e1992c04319cd78e4b091d7053cec63363e35573757e"
+    },
+    "ERQ1_BTG_CONTRIBUTION.json": {
+      "bytes": 886,
+      "sha256": "4438d6c0233bdc3443fab4998ef807fcc4c64366a456ae8195f5b42a21696ad4"
+    },
+    "ERQ1_GOVERNED_OBJECT_GRAPH.json": {
+      "bytes": 346977,
+      "sha256": "2069b73adbf0c0c9227d543e63a48ee266943a8343c27f77be577393e37b18bf"
+    },
+    "ERQ1_GOVERNED_REPOSITORY.json": {
+      "bytes": 1163,
+      "sha256": "78f9875e40c17d2504ebc4f2bf97f44cd55c6b5a5d0d78d61e2452477e818662"
+    },
+    "ERQ1_PROVENANCE_GRAPH.json": {
+      "bytes": 792,
+      "sha256": "9c10a4b9ede4c2d124b4ee4bd739cc94f99ba1d1f66e6d46b75bc17605805879"
+    },
+    "ERQ1_REPOSITORY_BTDU_OBJECT.json": {
+      "bytes": 1006,
+      "sha256": "c2f7b7e96586ebfbc6316f68571c55935afeb2e7047f04b9370a305ec8c466ee"
+    },
+    "ERQ1_RIGHTS_MANIFEST.json": {
+      "bytes": 774,
+      "sha256": "c1c9858be65282773866268a3c1700c125f6f4576d515d094010b9252936667c"
+    }
+  },
+  "qualification": "ERQ-1 External Repository Survival Qualification",
+  "schema": "entity-erq1-publication-manifest-v1",
+  "upstream_commit_sha": "08106b0c3771ef5b4a5aa176acccd460e88b7325",
+  "upstream_tree_sha": "d382e2a34200de59849132f78c1ee0123ffa8122"
+}

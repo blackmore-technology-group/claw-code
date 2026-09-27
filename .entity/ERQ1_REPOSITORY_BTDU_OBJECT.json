@@ -1,0 +1,15 @@
+{
+  "atom_id": "9c65c90a393ed57acb31fe49ddf4f13186d582b6a0b619a1eeaf1f2e2de02cdd",
+  "content_sha256": "145bc462a6abbd0ab97813a7515eb734404bd20817da9b226ad10c061eef1a20",
+  "controller_entity_id": "ent2-kkov66eoh23h3zgr4pe4njsbkayn2kxad6vfyirqvuqrty52clpa",
+  "evidence_object_id": "cb336ed34819544e77199d1e1f51810d010ecb41a9116fc521a55d545bae14ca",
+  "exact_compound_id": "3ea9bc51e5c2bf9751bc4119a288575a920181c63c13d7df39cd4d519a424a33",
+  "logical_path": ".entity/ERQ1_GOVERNED_REPOSITORY.json",
+  "media_type": "application/vnd.blackmore.entity-erq1+json",
+  "object_ref": "btdu-object:13d4342bc41d251480d7e3ba76eed261fdfa658de0fae4f960ef7dbdb74bd239",
+  "provenance_ref": "ERQ1:https://github.com/ultraworkers/claw-code.git@08106b0c3771ef5b4a5aa176acccd460e88b7325",
+  "rights_holder_entity_id": "ent2-kkov66eoh23h3zgr4pe4njsbkayn2kxad6vfyirqvuqrty52clpa",
+  "schema": "entity-btdu-object-v1",
+  "size_bytes": 1101,
+  "source_entity_id": "ent2-kkov66eoh23h3zgr4pe4njsbkayn2kxad6vfyirqvuqrty52clpa"
+}

@@ -1,0 +1,15 @@
+{
+  "btg_claims_derived_metadata_authorship": true,
+  "btg_claims_upstream_source_ownership": false,
+  "fork_controller_entity_id": "ent2-kkov66eoh23h3zgr4pe4njsbkayn2kxad6vfyirqvuqrty52clpa",
+  "ingestion_creates_economic_entitlement": false,
+  "ingestion_creates_ownership": false,
+  "license_blob_sha1": "28e6960dd9a2be209c308b49bc9a8973dbf4d60d",
+  "license_spdx": "MIT",
+  "schema": "entity-erq1-rights-manifest-v1",
+  "source_entity_ref": "github:ultraworkers/claw-code@08106b0c3771ef5b4a5aa176acccd460e88b7325",
+  "upstream_commit_sha": "08106b0c3771ef5b4a5aa176acccd460e88b7325",
+  "upstream_repository": "https://github.com/ultraworkers/claw-code.git",
+  "upstream_rights_holder_entity_id": null,
+  "upstream_tree_sha": "d382e2a34200de59849132f78c1ee0123ffa8122"
+}
